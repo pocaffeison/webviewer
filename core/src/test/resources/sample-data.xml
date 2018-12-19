@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+<table name="nt_server">
+    <column>server_id</column>
+    <column>name</column>
+    <row>
+         <value description="server_id">KOREA</value>
+         <value description="name">PSKR01</value>
+    </row>
+    <row>
+         <value description="server_id">JAPAN</value>
+         <value description="name">RSKR01</value>
+    </row>
+</table>
+<table name="nt_pns">
+    <column>pns_id</column>
+    <column>name</column>
+    <column>public_port</column>
+    <column>public_host</column>
+    <column>server_id</column>
+    <row>
+         <value description="pns_id">PSKR01</value>
+         <value description="name">PSKR01</value>
+         <value description="public_port">443</value>
+         <value description="public_host">rsrelay1.remotecall.io</value>
+         <value description="server_id">KOREA</value>
+    </row>
+    <row>
+         <value description="pns_id">PSJP01</value>
+         <value description="name">PSJP01</value>
+         <value description="public_port">4433</value>
+         <value description="public_host">rsrelay1.remotecall.io</value>
+         <value description="server_id">JAPAN</value>
+    </row>
+</table>
+<table name="nt_rsnet">
+    <column>rsnet_id</column>
+    <column>name</column>
+    <column>public_port</column>
+    <column>public_host</column>
+    <column>server_id</column>
+    <row>
+         <value description="rsnet_id">PSKR01</value>
+         <value description="name">PSKR01</value>
+         <value description="public_port">443</value>
+         <value description="public_host">stpush.startsupport.com</value>
+         <value description="server_id">KOREA</value>
+    </row>
+    <row>
+         <value description="rsnet_id">PSJP01</value>
+         <value description="name">PSJP01</value>
+         <value description="public_port">4433</value>
+         <value description="public_host">rsrelay1.remotecall.io</value>
+         <value description="server_id">JAPAN</value>
+    </row>
+</table>
+</dataset>
