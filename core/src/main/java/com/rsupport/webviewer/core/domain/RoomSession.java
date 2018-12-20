@@ -6,7 +6,7 @@ import org.hibernate.annotations.GenericGenerator;
 import javax.persistence.*;
 
 @Data
-@Table(name = "rt_viewer_session")
+@Table(name = "rt_room_session")
 @Entity
 public class RoomSession {
 
@@ -19,4 +19,12 @@ public class RoomSession {
     @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REMOVE})
     @JoinColumn(name = "room_id")
     private Room room;
+
+    @ManyToOne
+    @JoinColumn(name = "pns_id")
+    private Pns pns;
+
+    @ManyToOne
+    @JoinColumn(name = "rsnet_id")
+    private Rsnet rsnet;
 }

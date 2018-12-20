@@ -22,8 +22,8 @@ public class Viewer {
     @Column(name = "viewer_id", length = 50)
     private String id;
 
+    //양방향 금지.
     @OneToMany(fetch = FetchType.EAGER, cascade = {CascadeType.ALL}, orphanRemoval = true)
     @JoinColumn(name = "viewer_id")
-    private Set<ViewerSession> viewerSessions = new HashSet<>();
-
+    private Set<RoomSession> roomSessions = new HashSet<>();
 }

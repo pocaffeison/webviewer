@@ -1,4 +1,15 @@
 package com.rsupport.webviewer.viewer.config;
 
-public class WebMvcConfig {
+import com.rsupport.webviewer.viewer.util.ApplicationPropertiesUtil;
+import lombok.RequiredArgsConstructor;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+
+@Configuration
+@RequiredArgsConstructor
+public class WebMvcConfig implements WebMvcConfigurer {
+
+    private final ApplicationPropertiesUtil applicationPropertiesUtil;
+
+    
 }

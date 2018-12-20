@@ -1,52 +1,41 @@
 package com.rsupport.webviewer.viewer.api.viewer;
 
 import com.rsupport.webviewer.core.domain.Viewer;
-import com.rsupport.webviewer.core.domain.ViewerSession;
 import com.rsupport.webviewer.core.repository.ViewerRepository;
-import com.rsupport.webviewer.core.repository.ViewerSessionRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.hateoas.Link;
+import org.springframework.hateoas.Resource;
+import org.springframework.hateoas.mvc.ControllerLinkBuilder;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequiredArgsConstructor
 public class ViewerController {
 
     private final ViewerRepository viewerRepository;
-    private final ViewerSessionRepository viewerSessionRepository;
 
-    @PostMapping("/viewer")
-    public ResponseEntity<Viewer> createViewer() {
+    //Id, Password 필요.
+    @PostMapping(value = "/viewer", produces = MediaType.APPLICATION_JSON_VALUE)
+    public Resource<Viewer> createViewer() {
         Viewer viewer = new Viewer();
         viewerRepository.save(viewer);
-        return ResponseEntity.status(HttpStatus.OK).body(viewer);
+        Resource<Viewer> viewerResource = new Resource<>(viewer);
+        Link self = ControllerLinkBuilder.linkTo(ViewerController.class).withSelfRel();
+        Link info = ControllerLinkBuilder.linkTo(ViewerController.class).slash(viewer.getId()).withRel("info");
+        viewerResource.add(self);
+        viewerResource.add(info);
+        return viewerResource;
     }
 
-    @GetMapping("/viewer/{viewerId}")
+    @GetMapping(value = "/viewer/{viewerId}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Viewer> getViewer(@PathVariable String viewerId) {
         Viewer viewer = viewerRepository.findById(viewerId).orElseThrow(RuntimeException::new);
         return ResponseEntity.status(HttpStatus.OK).body(viewer);
-    }
-
-    @PostMapping("/viewer/{viewerId}/session")
-    public ResponseEntity<Viewer> createViewerSession(@PathVariable String viewerId) {
-        Viewer viewer = viewerRepository.findById(viewerId).orElseThrow(RuntimeException::new);
-        ViewerSession viewerSession = new ViewerSession();
-        viewer.getViewerSessions().add(viewerSession);
-        viewer = viewerRepository.save(viewer);
-        return ResponseEntity.status(HttpStatus.OK).body(viewer);
-    }
-
-    @PutMapping("/viewer/session/{sessionId}/{serverId}")
-    public ResponseEntity<Viewer> createViewerSession(@PathVariable String sessionId, @PathVariable String serverId) {
-
-//        ViewerSession viewerSession = viewerSessionRepository.findById(sessionId).orElseThrow(RuntimeException::new);
-//
-//        Viewer viewer = viewerRepository.findById(viewerId).orElseThrow(RuntimeException::new);
-//        ViewerSession viewerSession = new ViewerSession();
-//        viewer.getViewerSessions().add(viewerSession);
-//        viewer = viewerRepository.save(viewer);
-        return ResponseEntity.status(HttpStatus.OK).body(new Viewer());
     }
 }

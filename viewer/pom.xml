@@ -4,68 +4,33 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.0.1.RELEASE</version>
-        <relativePath/> <!-- lookup parent from repository -->
+        <groupId>com.rsupport</groupId>
+        <artifactId>webviewer</artifactId>
+        <version>1.0.0-SNAPSHOT</version>
     </parent>
 
     <groupId>com.rsupport.webviewer</groupId>
     <artifactId>webviewer-viewer</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>1.0.0-SNAPSHOT</version>
 
     <properties>
-        <java.version>1.8</java.version>
-        <!-- add chyun -->
-        <flywaydb.enabled>true</flywaydb.enabled>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <java.version>1.8</java.version>
-        <webviewer.core.version>1.0-SNAPSHOT</webviewer.core.version>
-        <db.address>localhost</db.address>
-        <db.name>newviewer</db.name>
-        <db.username>root</db.username>
-        <db.password></db.password>
-        <jdbc.driverClassName>com.mysql.jdbc.Driver</jdbc.driverClassName>
-        <jdbc.url>jdbc:mysql://${db.address}/${db.name}?createDatabaseIfNotExist=true&amp;useUnicode=true&amp;characterEncoding=utf-8&amp;autoReconnect=true</jdbc.url>
-        <hibernate.ddl-auto>create</hibernate.ddl-auto>
-        <querydsl.version>4.1.4</querydsl.version>
-        <poi.version>3.8</poi.version>
-        <hibernate.dialect>org.hibernate.dialect.MySQL5Dialect</hibernate.dialect>
-        <jackson2.version>2.3.2</jackson2.version>
-        <swagger2.version>2.2.2</swagger2.version>
-        <dbunit.dataxml.path>target/test-classes/sample-data.xml</dbunit.dataxml.path>
-        <dbunit.dataTypeFactoryName>org.dbunit.ext.mysql.MySqlDataTypeFactory</dbunit.dataTypeFactoryName>
-        <dbunit.operation.type>CLEAN_INSERT</dbunit.operation.type>
-        <dbunit.skip>false</dbunit.skip>
-        <server.address>localhost</server.address>
-        <server.port>8080</server.port>
-        <jswon.webtoken.version>0.9.0</jswon.webtoken.version>
-        <version.filename>${project.build.directory}/static/version.txt</version.filename>
-        <maven.build.timestamp.format>yyyy-MM-dd HH:mm:ss</maven.build.timestamp.format>
+
     </properties>
 
     <dependencies>
         <dependency>
+            <groupId>org.springframework.hateoas</groupId>
+            <artifactId>spring-hateoas</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+        <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter</artifactId>
         </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-            <scope>test</scope>
-        </dependency>
-
         <!-- add Chyun -->
-        <dependency>
-            <groupId>com.rsupport.webviewer</groupId>
-            <artifactId>webviewer-core</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-jpa</artifactId>
-        </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
@@ -75,24 +40,6 @@
             <artifactId>spring-boot-starter-thymeleaf</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <optional>true</optional>
-        </dependency>
-        <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-            <scope>runtime</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.rsupport.webviewer</groupId>
-            <artifactId>webviewer-core</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-            <scope>compile</scope>
-        </dependency>
-
-        <!-- swagger -->
-        <dependency>
             <groupId>io.springfox</groupId>
             <artifactId>springfox-swagger-ui</artifactId>
             <version>${swagger2.version}</version>
@@ -101,6 +48,11 @@
             <groupId>io.springfox</groupId>
             <artifactId>springfox-swagger2</artifactId>
             <version>${swagger2.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.rsupport.webviewer</groupId>
+            <artifactId>webviewer-core</artifactId>
+            <version>1.0.0-SNAPSHOT</version>
         </dependency>
     </dependencies>
     <build>
