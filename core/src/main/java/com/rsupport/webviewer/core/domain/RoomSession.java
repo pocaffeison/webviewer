@@ -8,7 +8,7 @@ import javax.persistence.*;
 @Data
 @Table(name = "rt_viewer_session")
 @Entity
-public class ViewerSession {
+public class RoomSession {
 
     @Id
     @GeneratedValue(generator = "system-uuid")
